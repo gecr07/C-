@@ -19,7 +19,9 @@ Programacion en general de C++
 ### Ejemplo 
 
 ```
-printf("`format_specifier`", val)
+char ch = 'd';
+double d = 234.432;
+printf("%c %lf", ch, d);
 ```
 
 
@@ -30,7 +32,10 @@ Se usan las mismas para que se usen con estas dos funciones
 ### Ejemplo 
 
 ``` c++
-scanf("`format_specifier`", &val)
+char ch;
+double d;
+scanf("%c %lf", &ch, &d);
+
 ```
 
 
