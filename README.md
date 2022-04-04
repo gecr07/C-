@@ -93,3 +93,7 @@ int myFunction(int a, double b) {
     // .. use parameters a and b ... //
 }
 ```
+## std::stoi
+
+Parses str interpreting its content as an integral number of the specified base, which is returned as an int value.
+
