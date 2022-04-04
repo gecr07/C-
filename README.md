@@ -38,6 +38,33 @@ scanf("%c %lf", &ch, &d);
 
 ```
 
+### Ejemplo 2
+```
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+int main() {
+    int a,x;
+    long b;
+    long long c;
+    char d;
+    float e;
+    double f;
+    x = scanf("%d %ld %lld %c %f %lf", &a, &b, &c, &d, &e, &f);
+    printf("%d\n", a);
+    printf("%ld\n", b);
+    printf("%lld\n", c);
+    printf("%c\n", d);
+    printf("%f\n", e);
+    printf("%lf\n", f);
+    return 0;
+}
+```
+## _CRT_SECURE_NO_WARNINGS
+
+Para poder usar funciones antiguas vete a Proyecto > Propiedades del Proyecto > C++ > Presprocesador > Definiciones del Prepocedaor y pon _CRT_SECURE_NO_WARNINGS
+
 
 
 
