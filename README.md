@@ -64,6 +64,7 @@ int main() {
 ## _CRT_SECURE_NO_WARNINGS
 
 Para poder usar funciones antiguas vete a Proyecto > Propiedades del Proyecto > C++ > Presprocesador > Definiciones del Prepocedaor y pon _CRT_SECURE_NO_WARNINGS
+//#pragma warning(suppress : 4996) tambien quita warnings
 
 
 
