@@ -67,5 +67,12 @@ Para poder usar funciones antiguas vete a Proyecto > Propiedades del Proyecto > 
 //#pragma warning(suppress : 4996) tambien quita warnings
 
 
+## Constantes 
 
+como es un prototipo de funcion no necesita los nombres de las variables y si compila ademas recuerda recibe un const string para que no pueda modificar
+nada del string que le pasaron porlomnos no la funcion no modifica nada.
+```
+string ltrim(const string &);
+
+```
 
