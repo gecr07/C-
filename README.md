@@ -76,3 +76,20 @@ string ltrim(const string &);
 
 ```
 
+# This means that we have three rules in C++:
+
+Rule One: The names of parameters in function prototypes are ignored.
+
+Rule Two: A function implementation doesn't have to pick the same names for its parameters as its prototype.
+
+Rule Three: Parameters don't even need to have names at all.
+
+By combining these three rules together, you sometimes see things like this:
+
+```
+int myFunction(int, double); // Prototype gives no names to arguments
+
+int myFunction(int a, double b) {
+    // .. use parameters a and b ... //
+}
+```
