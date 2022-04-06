@@ -97,3 +97,23 @@ int myFunction(int a, double b) {
 
 Parses str interpreting its content as an integral number of the specified base, which is returned as an int value.
 
+## Arrays
+
+Arreglos variables de tamaño.
+```
+int n = 10;
+double a[n]; // Legal in g++ (with extensions), illegal in proper C++
+```
+Usa esto en c++ visual studio
+```
+int n = 10;
+double* a = new double[n]; // Don't forget to delete [] a; when you're done!
+
+```
+*** para usarlo usa***
+
+```
+cout << *(var+j) << " "; // asi de des referencia los punteros
+```
+
+
