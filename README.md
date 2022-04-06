@@ -110,7 +110,7 @@ int n = 10;
 double* a = new double[n]; // Don't forget to delete [] a; when you're done!
 
 ```
-*** para usarlo usa***
+***para usarlo usa***
 
 ```
 cout << *(var+j) << " "; // asi de des referencia los punteros
