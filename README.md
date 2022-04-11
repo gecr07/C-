@@ -116,4 +116,10 @@ double* a = new double[n]; // Don't forget to delete [] a; when you're done!
 cout << *(var+j) << " "; // asi de des referencia los punteros
 ```
 
+## C++ 11 Arrays 
+
+Para usar esto utiliza #include <array> tiene algunas ventajas y utiliza el relativamente nuevo c++ 11 sintaxis no se como decirlo. Su principal ventaja std::array is a container that encapsulates fixed size arrays.
+
+> array<object_type, arr_size> arr_name;
+
 
