@@ -215,5 +215,43 @@ In this example, we encounter a handful of constants, which are in all-caps and 
 ***Ejemplos:***
     
 MB_ICONERROR: A flag used with MessageBox to display an error icon.
+    
 WS_EX_LEFT: The default extended window style. This causes the window to have left-aligned properties.
+    
 WS_OVERLAPPEDWINDOW: A window style indicating that the window should be a parent window with a title bar, size box, and others elements typical of top-level windows.
+    
+ ## Windows Types   
+    
+***Tipos Win32, que son alias para tipos integrados. Estos tipos están en mayúsculas. Los tipos de alias utilizados en este programa son:***
+    
+TCHAR: The generic character type. If UNICODE is defined, this is a wchar_t. Otheriwse, it is a char.
+    
+UINT: An unsigned integer. Used to represent the message identifier in window procedures, and other purposes.
+    
+WPARAM: In Win16, this was a WORD argument (hence the W prefix). With the introduction of Win32, however, this is now a UINT_PTR. This illustrates the point of these Windows aliases; they are there to protect programs from change.
+    
+LPARAM: This is a LONG argument (LONG_PTR in Win64).
+    
+PTSTR: The P means pointer. The T means generic character, and the STR means string. Thus, this is a pointer to a TCHAR string. Other string types include:
+    
+LPTSTR: Same as PTSTR
+    
+LPCTSTR: Means const TCHAR *
+    
+PCTSTR: Same as LPCTSTR
+    
+LPWSTR: Wide string (wchar_t *)
+    
+LPCWSTR: Means const wchar_t *
+    
+PWSTR: Same as LPWSTR
+    
+and much more As you can see, the Win32 types can be a hassle to understand, especially with so many synonymous types, which is an artifact of Win16.
+LRESULT: This type is used to represent the return value of window procedures. It is usually a LONG (hence the L).
+    
+    
+    
+    
+    
+    
+    
