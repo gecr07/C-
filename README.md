@@ -138,7 +138,7 @@ Controles comunes: controles estándar, vistas de lista, controles deslizantes, 
     
     ### Ejemplo primer programa
     
-    ```
+``` c++
     #include <windows.h>
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
@@ -147,6 +147,7 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 }
  ```
     
+    
 >El WinMain es diferente de un estándar int main() utilizado con una aplicación de consola. Se utilizan más parámetros en la interfaz y, lo que es más importante, el punto de entrada principal para una aplicación de ventana utiliza una convención de llamada diferente del C/C++ estándar.
 
 >El calificador APIENTRY indica la convención de llamada, que es el orden en que se insertan los argumentos en la pila † . De forma predeterminada, la convención de llamada es la convención estándar de C indicada por __cdecl. Sin embargo, Microsoft usa un tipo diferente de convención de llamadas, la convención PASCAL, para las funciones de la API de Windows, que se indica mediante el __stdcall calificador. APIENTRY es un nombre definido __stdcall en uno de los archivos de encabezado incluidos por windows.h
@@ -154,10 +155,56 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
     
  Los siguientes argumentos WinMain son los siguientes:
 
--hInst: el identificador de la instancia
--hInstPrev: el identificador de instancia anterior. Ya no se usa.
--cmdline: argumentos de la línea de comandos (consulte Pasar argumentos de WinMain (o wWinMain) a main normal )
-- cmdshow: indica si se debe mostrar una ventana.
+hInst: el identificador de la instancia
+hInstPrev: el identificador de instancia anterior. Ya no se usa.
+cmdline: argumentos de la línea de comandos (consulte Pasar argumentos de WinMain (o wWinMain) a main normal )
+ cmdshow: indica si se debe mostrar una ventana.
+    
+***Ejemplo***
+    
+``` c++
+    BOOL WINAPI CopyFile(
+  _In_ LPCTSTR lpExistingFileName,
+  _In_ LPCTSTR lpNewFileName,
+  _In_ BOOL    bFailIfExists
+);
+``` 
+    
+El tipo de datos para los dos parámetros de cadena se compone de varias partes:
+
+LP = puntero largo
+C = constante
+T = CHAR
+STR = cadena
+    
+## TCHAR
+    
+Ahora que TCHARsignifica? Esto depende de la plataforma elegida para la compilación del programa.
+    
+There core token, TCHAR is defined as:
+    
+    ``` 
+ #ifdef _UNICODE
+typedef wchar_t TCHAR;
+#else
+typedef char TCHAR;
+#endif
+    ```
+ De nuevo, dependiendo de los indicadores de compilación, TCHAR es un carácter "estrecho" o "ancho" (2 bytes).
+    
+ Lo primero que se ve son las dos definiciones de macro UNICODEy _UNICODE. Estas macros hacen que nuestro programa comprenda cadenas de caracteres anchos ( wchar_t[n]), no cadenas angostas simples ( char[n]). Como resultado, todos los literales de cadena deben incluirse en una TEXT(macro. El tipo de carácter genérico para cadenas Win32 es TCHAR, cuya definición depende de si UNICODEestá definido o no. Se incluye un nuevo encabezado: <tchar.h>contiene la declaración de TCHAR.
     
     
+Entonces, cuando se define UNICODE, CopyFilese define como CopyFileW, que utilizará matrices de caracteres de 2 bytes como su parámetro, que se espera que estén codificados en UTF-16.
+
+Si UNICODE no está definido, CopyFilese define como el CopyFileAque usa matrices de caracteres de un solo byte que se espera que se codifiquen en la codificación ANSI predeterminada del usuario actual.
+
+Hay dos macros similares: UNICODEhace que las API de Windows esperen cadenas anchas y _UNICODE(con un guión bajo al principio) que habilita funciones similares en la biblioteca de tiempo de ejecución de C.
+
+Estas definiciones nos permiten escribir código que compila tanto en ANSI como en modo Unicode.
+    
+    
+## Handle
+    
+ Un identificador es un tipo de datos que representa un objeto único. Son punteros, pero a estructuras de datos secretas mantenidas por el sistema operativo. Los detalles de estas estructuras no tienen por qué preocuparnos. Todo lo que un usuario debe hacer es simplemente crear/recuperar un identificador usando una llamada API y pasarlo a otras llamadas API que toman ese tipo de identificador. El único tipo de identificador que usamos fue el HWNDdevuelto por CreateWindowEx.
     
