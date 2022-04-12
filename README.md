@@ -147,3 +147,17 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmd
 }
  ```
     
+>El WinMain es diferente de un estándar int main() utilizado con una aplicación de consola. Se utilizan más parámetros en la interfaz y, lo que es más importante, el punto de entrada principal para una aplicación de ventana utiliza una convención de llamada diferente del C/C++ estándar.
+
+>El calificador APIENTRY indica la convención de llamada, que es el orden en que se insertan los argumentos en la pila † . De forma predeterminada, la convención de llamada es la convención estándar de C indicada por __cdecl. Sin embargo, Microsoft usa un tipo diferente de convención de llamadas, la convención PASCAL, para las funciones de la API de Windows, que se indica mediante el __stdcall calificador. APIENTRY es un nombre definido __stdcall en uno de los archivos de encabezado incluidos por windows.h
+    
+    
+ Los siguientes argumentos WinMain son los siguientes:
+
+-hInst: el identificador de la instancia
+-hInstPrev: el identificador de instancia anterior. Ya no se usa.
+-cmdline: argumentos de la línea de comandos (consulte Pasar argumentos de WinMain (o wWinMain) a main normal )
+- cmdshow: indica si se debe mostrar una ventana.
+    
+    
+    
