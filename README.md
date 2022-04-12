@@ -123,3 +123,27 @@ Para usar esto utiliza #include <array> tiene algunas ventajas y utiliza el rela
 > array<object_type, arr_size> arr_name;
 
 
+# WinAPI
+    
+    WinAPI (también conocido como Win32; oficialmente llamado Microsoft Windows API) es una interfaz de programación de aplicaciones escrita en C por Microsoft para permitir el acceso a las funciones de Windows. Los componentes principales de WinAPI son:
+
+WinBase: Las funciones del kernel, CreateFile, CreateProcess, etc.
+WinUser: las funciones GUI, CreateWindow, RegisterClass, etc.
+WinGDI: Las funciones gráficas, Ellipse, SelectObject, etc.
+Controles comunes: controles estándar, vistas de lista, controles deslizantes, etc.
+    
+    >https://docs.microsoft.com/es-es/windows/win32/apiindex/windows-api-list?redirectedfrom=MSDN
+    
+ Una aplicación de consola de Windows puede tener varias interfaces ligeramente diferentes para el punto de entrada principal proporcionado por el programador. La diferencia entre estos es si el punto de entrada principal es el tradicional ****int main (int argc, char *argv[])*** o si es la versión específica de Windows ***int _tmain(int argc, _TCHAR* argv[])*** que proporciona caracteres amplios en los parámetros de la aplicación. Si genera un proyecto de aplicación de consola Windows Win32 con Visual Studio, la fuente generada será la versión específica de Windows.
+    
+    ### Ejemplo primer programa
+    
+    ```
+    #include <windows.h>
+
+int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int cmdshow)
+{
+    return MessageBox(NULL, "hello, world", "caption", 0);
+}
+ ```
+    
