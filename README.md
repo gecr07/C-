@@ -132,11 +132,11 @@ WinUser: las funciones GUI, CreateWindow, RegisterClass, etc.
 WinGDI: Las funciones gráficas, Ellipse, SelectObject, etc.
 Controles comunes: controles estándar, vistas de lista, controles deslizantes, etc.
     
-    >https://docs.microsoft.com/es-es/windows/win32/apiindex/windows-api-list?redirectedfrom=MSDN
+> https://docs.microsoft.com/es-es/windows/win32/apiindex/windows-api-list?redirectedfrom=MSDN
     
  Una aplicación de consola de Windows puede tener varias interfaces ligeramente diferentes para el punto de entrada principal proporcionado por el programador. La diferencia entre estos es si el punto de entrada principal es el tradicional ****int main (int argc, char *argv[])*** o si es la versión específica de Windows ***int _tmain(int argc, _TCHAR* argv[])*** que proporciona caracteres amplios en los parámetros de la aplicación. Si genera un proyecto de aplicación de consola Windows Win32 con Visual Studio, la fuente generada será la versión específica de Windows.
     
-    ### Ejemplo primer programa
+### Ejemplo primer programa
     
 ``` c++
     #include <windows.h>
@@ -183,14 +183,14 @@ Ahora que TCHARsignifica? Esto depende de la plataforma elegida para la compilac
     
 There core token, TCHAR is defined as:
     
-    ``` 
+ ``` c++
  #ifdef _UNICODE
 typedef wchar_t TCHAR;
 #else
 typedef char TCHAR;
 #endif
-    ```
- De nuevo, dependiendo de los indicadores de compilación, TCHAR es un carácter "estrecho" o "ancho" (2 bytes).
+```
+De nuevo, dependiendo de los indicadores de compilación, TCHAR es un carácter "estrecho" o "ancho" (2 bytes).
     
  Lo primero que se ve son las dos definiciones de macro UNICODEy _UNICODE. Estas macros hacen que nuestro programa comprenda cadenas de caracteres anchos ( wchar_t[n]), no cadenas angostas simples ( char[n]). Como resultado, todos los literales de cadena deben incluirse en una TEXT(macro. El tipo de carácter genérico para cadenas Win32 es TCHAR, cuya definición depende de si UNICODEestá definido o no. Se incluye un nuevo encabezado: <tchar.h>contiene la declaración de TCHAR.
     
@@ -208,3 +208,12 @@ Estas definiciones nos permiten escribir código que compila tanto en ANSI como 
     
  Un identificador es un tipo de datos que representa un objeto único. Son punteros, pero a estructuras de datos secretas mantenidas por el sistema operativo. Los detalles de estas estructuras no tienen por qué preocuparnos. Todo lo que un usuario debe hacer es simplemente crear/recuperar un identificador usando una llamada API y pasarlo a otras llamadas API que toman ese tipo de identificador. El único tipo de identificador que usamos fue el HWNDdevuelto por CreateWindowEx.
     
+ ## Constants
+   
+In this example, we encounter a handful of constants, which are in all-caps and begin with a 2 or 3 letter prefix. (The Windows types are also in all-caps).
+    
+***Ejemplos:***
+    
+MB_ICONERROR: A flag used with MessageBox to display an error icon.
+WS_EX_LEFT: The default extended window style. This causes the window to have left-aligned properties.
+WS_OVERLAPPEDWINDOW: A window style indicating that the window should be a parent window with a title bar, size box, and others elements typical of top-level windows.
