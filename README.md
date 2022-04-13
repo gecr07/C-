@@ -251,7 +251,73 @@ LRESULT: This type is used to represent the return value of window procedures. I
     
     
     
+# Windows via C++ Libro
     
+    
+Para compatibilidad con versiones anteriores, Windows de 64 bits puede ejecutar aplicaciones de 32 bits. 
+    
+### Error Handling 
+    
+Cuando se llama a una funcion y se tiene un error windows asigna un numero de 32 bits de error. La api que se usa para ver estos codigos es GetLastError().
+Los codigos de error se encuentran definidos en una libreria que se llama WinError.h. Pero tambien cuanodo una funcion tiene exito genera un codigo como el de error
+pero para success.
+    
+### Debugging mirar el ulitmo codigo de error
+    
+ While debugging, I find it extremely useful to monitor the thread's last error code. In Microsoft Visual Studio, Microsoft's
+debugger supports a useful feature—you can configure the Watch window to always show you the thread's last error code
+number and the text description of the error. This is done by selecting a row in the Watch window and typing $err,hr. 
+    
+    
+## Chapter 2: Working with Characters and Strings
+
+Primero fue las cademas de caracteres con terminacion nulla o cero "When we call
+strlen, it returns the number of characters in a zero-terminated array of ANSI single-byte characters". Despues se crearon los 
+Se crearon conjuntos de caracteres de doble byte (DBCS) que podian aceptar caracteres de uno o 2 bytes por ejemplo en el japones
+FINALMENTE 
+Se creo Unicode. UTF-16 codifica cada carácter como 2 bytes (o 16 bits). En este libro, cuando hablamos de Unicode,
+siempre nos referimos a la codificación UTF-16 a menos que indiquemos lo contrario.    
+    
+>Note that the .NET Framework always encodes all characters and
+strings using UTF-16, so using UTF-16 in your Windows application will improve performance and reduce memory
+consumption if you need to pass characters or strings between native and managed code.
+    
+    
+## C char
+    
+C language uses the char data type to represent an 8-bit ANSI character. By default, when
+you declare a literal string in your source code, the C compiler turns the string's characters into an array of 8-bit char data
+types:
+
+``` 
+   
+    // An 8-bit character
+char c = 'A';
+// An array of 99 8-bit characters and an 8-bit terminating zero.
+char szBuffer[100] = "A String";
+    
+```     
+      
+## wchar_t
+    
+ Microsoft define un tipo de datos integrado, wchar_t, que representa un carácter Unicode (UTF-16) de 16 bits.   
+    
+ Debido a que las versiones anteriores del compilador de Microsoft no ofrecían este tipo de datos incorporado, el compilador define este tipo de datos solo
+cuando se especifica el modificador del compilador /Zc:wchar_t. ****De forma predeterminada, cuando crea un proyecto de C++ en Microsoft Visual Studio,
+se especifica este modificador del compilador***. Recomendamos que siempre especifique este modificador del compilador, ya que es mejor trabajar con
+Caracteres Unicode a través del tipo primitivo integrado entendido intrínsecamente por el compilador.   
+    
+    
+# L "String"  Here is how you declare a Unicode character and string:  
+    
+ ```
+   // An array up to 99 16-bit characters and a 16-bit terminating zero.
+wchar_t szBuffer[100] = L"A String"; 
+ 
+    ```
+ Una L mayúscula antes de una cadena literal informa al compilador que la cadena debe compilarse como una cadena Unicode. Cuando el
+el compilador coloca la cadena en la sección de datos del programa, codifica cada carácter usando UTF16, intercalando cero bytes
+entre cada carácter ASCII(El sistema de ocho bits se conoce como ASCII extendido.) en este caso simple.
     
     
     
