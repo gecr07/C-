@@ -283,22 +283,21 @@ strings using UTF-16, so using UTF-16 in your Windows application will improve p
 consumption if you need to pass characters or strings between native and managed code.
     
     
-## C char
+### C char
     
 C language uses the char data type to represent an 8-bit ANSI character. By default, when
 you declare a literal string in your source code, the C compiler turns the string's characters into an array of 8-bit char data
 types:
 
-``` 
-   
-    // An 8-bit character
+``` c++
+// An 8-bit character
 char c = 'A';
 // An array of 99 8-bit characters and an 8-bit terminating zero.
 char szBuffer[100] = "A String";
     
 ```     
       
-## wchar_t
+### wchar_t
     
  Microsoft define un tipo de datos integrado, wchar_t, que representa un carácter Unicode (UTF-16) de 16 bits.   
     
@@ -310,22 +309,22 @@ Caracteres Unicode a través del tipo primitivo integrado entendido intrínsecam
     
 # L "String"  Here is how you declare a Unicode character and string:  
     
- ```
+ ```c++
    // An array up to 99 16-bit characters and a 16-bit terminating zero.
 wchar_t szBuffer[100] = L"A String"; 
  
-    ```
+```
  Una L mayúscula antes de una cadena literal informa al compilador que la cadena debe compilarse como una cadena Unicode. Cuando el
 el compilador coloca la cadena en la sección de datos del programa, codifica cada carácter usando UTF16, intercalando cero bytes
 entre cada carácter ASCII(El sistema de ocho bits se conoce como ASCII extendido.) en este caso simple.
     
     
- ## CHAR y WCHAR
+### CHAR y WCHAR
     
 El equipo de Windows de Microsoft quiere definir sus propios tipos de datos para aislarse un poco del lenguaje C. Y entonces,
 el archivo de encabezado de Windows, WinNT.h, define los siguientes tipos de datos:
     
-  ```
+ ```C++
  // Esto es lo que WINDOWS Define
     
 typedef char CHAR; // An 8-bit character
@@ -339,14 +338,14 @@ typedef WCHAR *PWCHAR
 typedef WCHAR *PWSTR;
 typedef CONST WCHAR *PCWSTR;
     
-  ```
+```
    
- ## Header Annotations
+### Header Annotations
     
 El siguiente ejemplo muestra las anotaciones para la función GetModuleFileName . El parámetro hModule es un parámetro de entrada opcional. El parámetro lpFilename es un parámetro de salida; su tamaño en caracteres se especifica mediante el parámetro nSize y su longitud incluye el carácter de terminación nula . El parámetro nSize es un parámetro de entrada.
     
     
-  ```
+```C++
     DWORD
 WINAPI
 GetModuleFileName(
@@ -355,9 +354,9 @@ GetModuleFileName(
     __in DWORD nSize
     );
     
- ```
+```
     
-## Unicode and ANSI Functions in Windows
+### Unicode and ANSI Functions in Windows
     
  Desde Windows NT, todas las versiones de Windows se construyen desde cero usando Unicode. 
 > Es decir, todas las funciones básicas para
@@ -377,7 +376,7 @@ invisible para ti. Por supuesto, hay una sobrecarga de tiempo y memoria involucr
 conversiones.
  
     
-## CreateWindowExA  vs CreateWindowExA y todas las apis tienen 2 versiones
+### CreateWindowExA  vs CreateWindowExA y todas las apis tienen 2 versiones
     
  
 CreateWindowExW es la versión que acepta cadenas Unicode. La W mayúscula al final del nombre de la función representa
@@ -386,8 +385,8 @@ final de CreateWindowExA indica que la función acepta cadenas de caracteres ANS
 Pero generalmente solo incluimos una llamada a CreateWindowEx en nuestro código y no llamamos directamente a CreateWindowExW o
 CreateWindowExA. En WinUser.h, CreateWindowEx es en realidad una macro definida como   
     
- ``` 
-   `//But usually we just include a call to CreateWindowEx in our code and don't directly call either CreateWindowExW or
+```C++
+ //But usually we just include a call to CreateWindowEx in our code and don't directly call either CreateWindowExW or
 //   CreateWindowExA. In WinUser.h, CreateWindowEx is actually a macro defined as
     
 #ifdef UNICODE
@@ -396,5 +395,5 @@ CreateWindowExA. En WinUser.h, CreateWindowEx es en realidad una macro definida 
 #define CreateWindowEx CreateWindowExA
 #endif
     
-    ```
-# Cuando crea un nuevo proyecto con Visual Studio, define UNICODE de forma predeterminada.  
+```
+## Cuando crea un nuevo proyecto con Visual Studio, define UNICODE de forma predeterminada.  
