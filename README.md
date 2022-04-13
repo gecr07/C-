@@ -320,4 +320,81 @@ el compilador coloca la cadena en la sección de datos del programa, codifica ca
 entre cada carácter ASCII(El sistema de ocho bits se conoce como ASCII extendido.) en este caso simple.
     
     
+ ## CHAR y WCHAR
     
+El equipo de Windows de Microsoft quiere definir sus propios tipos de datos para aislarse un poco del lenguaje C. Y entonces,
+el archivo de encabezado de Windows, WinNT.h, define los siguientes tipos de datos:
+    
+  ```
+ // Esto es lo que WINDOWS Define
+    
+typedef char CHAR; // An 8-bit character
+typedef wchar_t WCHAR; // A 16-bit character
+// Pointer to 8-bit character(s)
+typedef CHAR *PCHAR;
+typedef CHAR *PSTR;
+typedef CONST CHAR *PCSTR
+// Pointer to 16-bit character(s)
+typedef WCHAR *PWCHAR    
+typedef WCHAR *PWSTR;
+typedef CONST WCHAR *PCWSTR;
+    
+  ```
+   
+ ## Header Annotations
+    
+El siguiente ejemplo muestra las anotaciones para la función GetModuleFileName . El parámetro hModule es un parámetro de entrada opcional. El parámetro lpFilename es un parámetro de salida; su tamaño en caracteres se especifica mediante el parámetro nSize y su longitud incluye el carácter de terminación nula . El parámetro nSize es un parámetro de entrada.
+    
+    
+  ```
+    DWORD
+WINAPI
+GetModuleFileName(
+    __in_opt HMODULE hModule,
+    __out_ecount_part(nSize, return + 1) LPTSTR lpFilename,
+    __in DWORD nSize
+    );
+    
+ ```
+    
+## Unicode and ANSI Functions in Windows
+    
+ Desde Windows NT, todas las versiones de Windows se construyen desde cero usando Unicode. 
+> Es decir, todas las funciones básicas para
+la creación de ventanas, la visualización de texto, la manipulación de cadenas, etc. requieren cadenas Unicode.
+    
+### APIS en Unicode ¿?
+    
+ Si llamas a alguno
+función de Windows pasándole una cadena ANSI (una cadena de caracteres de 1 byte), la función primero convierte la cadena a Unicode
+y luego pasa la cadena Unicode al sistema operativo.
+    
+***Entonces***
+ 
+Si está esperando cadenas ANSI de vuelta de una función, el
+El sistema convierte la cadena Unicode en una cadena ANSI antes de volver a su aplicación. Todas estas conversiones ocurren
+invisible para ti. Por supuesto, hay una sobrecarga de tiempo y memoria involucrada para que el sistema lleve a cabo todas estas secuencias.
+conversiones.
+ 
+    
+## CreateWindowExA  vs CreateWindowExA y todas las apis tienen 2 versiones
+    
+ 
+CreateWindowExW es la versión que acepta cadenas Unicode. La W mayúscula al final del nombre de la función representa
+por ancho. Los caracteres Unicode tienen 16 bits de ancho, por lo que con frecuencia se denominan caracteres anchos. La A mayúscula en el
+final de CreateWindowExA indica que la función acepta cadenas de caracteres ANSI.
+Pero generalmente solo incluimos una llamada a CreateWindowEx en nuestro código y no llamamos directamente a CreateWindowExW o
+CreateWindowExA. En WinUser.h, CreateWindowEx es en realidad una macro definida como   
+    
+ ``` 
+   `//But usually we just include a call to CreateWindowEx in our code and don't directly call either CreateWindowExW or
+//   CreateWindowExA. In WinUser.h, CreateWindowEx is actually a macro defined as
+    
+#ifdef UNICODE
+#define CreateWindowEx CreateWindowExW
+#else
+#define CreateWindowEx CreateWindowExA
+#endif
+    
+    ```
+# Cuando crea un nuevo proyecto con Visual Studio, define UNICODE de forma predeterminada.  
