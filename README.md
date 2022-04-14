@@ -397,3 +397,25 @@ CreateWindowExA. En WinUser.h, CreateWindowEx es en realidad una macro definida 
     
 ```
 ## Cuando crea un nuevo proyecto con Visual Studio, define UNICODE de forma predeterminada.  
+    
+#  Unicode and ANSI Functions in the C Run-Time Library
+    
+An example of a C run-time function that returns the length of an ANSI string is strlen, and an example of an equivalent
+C run-time function that returns the length of a Unicode string is wcslen.
+   
+## UNICODE
+    The plain versions without the underscore affect the character set the Windows header files treat as default. So if you define UNICODE, then GetWindowText will map to GetWindowTextW instead of GetWindowTextA, for example. Similarly, the TEXT macro will map to L"..." instead of "...".    
+    
+## _UNICODE 
+    
+    The versions with the underscore affect the character set the C runtime header files treat as default. So if you define _UNICODE, then _tcslen will map to wcslen instead of strlen, for example. Similarly, the _TEXT macro will map to L"..." instead of "...".
+    
+## TEXT
+    
+    The plain versions without the underscore affect the character set the Windows header files treat as default. So if you define UNICODE, then GetWindowText will map to GetWindowTextW instead of GetWindowTextA, for example. Similarly, the TEXT macro will map to L”…” instead of “…”.
+    
+## _TEXT
+    
+The versions with the underscore affect the character set the C runtime header files treat as default. So if you define _UNICODE, then _tcslen will map to wcslen instead of strlen, for example. Similarly, the _TEXT macro will map to L”…” instead of “…”.
+
+What about _T? Okay, I don’t know about that one. Maybe it was just to save somebody some typing.    
