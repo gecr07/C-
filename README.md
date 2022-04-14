@@ -414,8 +414,39 @@ C run-time function that returns the length of a Unicode string is wcslen.
     
     The plain versions without the underscore affect the character set the Windows header files treat as default. So if you define UNICODE, then GetWindowText will map to GetWindowTextW instead of GetWindowTextA, for example. Similarly, the TEXT macro will map to L”…” instead of “…”.
     
-## _TEXT
+## _TEXT y TEXT
     
 The versions with the underscore affect the character set the C runtime header files treat as default. So if you define _UNICODE, then _tcslen will map to wcslen instead of strlen, for example. Similarly, the _TEXT macro will map to L”…” instead of “…”.
 
-What about _T? Okay, I don’t know about that one. Maybe it was just to save somebody some typing.    
+What about _T? Okay, I don’t know about that one. Maybe it was just to save somebody some typing.  
+    
+## StrSafe.h file e _s (for secure) suffix or StringCch
+    
+>https://docs.microsoft.com/en-us/windows/win32/menurc/strsafe-ovw
+    
+    funciones seguras para manejo de cadenas.
+    
+## Windows internally does everything with Unicode characters and strings, so when you pass an ANSI character or
+string, Windows must allocate memory and convert the ANSI character or string to its Unicode equivalent.
+    
+## _countof vs sizeof(arr)
+    
+    El primero te da la medida en elementos o caracteres de un string. Y sizeof te da el tamaño pero en bytes.
+    
+>There is also a set of functions that have "Cb" in their name, such as
+StringCbCat(Ex), StringCbCopy(Ex), and StringCbPrintf(Ex). These functions expect that the size argument
+is in count of bytes instead of count of characters. You'll typically use the sizeof operator to get this value.    
+    
+```
+    sizeof(arr) = 40 bytes
+_countof(arr) = 20 elements
+    
+```    
+
+# Chapter 3: Kernel Objects
+    
+## What Is a Kernel Object?
+
+Each kernel object is simply a memory block allocated by the
+kernel and is accessible only by the kernel. This memory block is a data structure whose members maintain information
+about the object
