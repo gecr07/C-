@@ -450,3 +450,24 @@ _countof(arr) = 20 elements
 Each kernel object is simply a memory block allocated by the
 kernel and is accessible only by the kernel. This memory block is a data structure whose members maintain information
 about the object
+    
+## User Objects 
+ 
+USER objects get their name from the fact that they represent user interface elements like desktops, windows, menus, cursors, icons, and accelerator tables (menu keyboard shortcuts).
+
+A basic limitation imposed by the window manager is that no process can create more than 10,000 USER objects.
+    
+    
+One fundamental limitation on the number of USER objects comes from the fact that their identifiers were 16-bit values in the first versions of Windows, which were 16-bit. When 32-bit support was added in later versions, USER identifiers had to remain restricted to 16-bit values so that 16-bit processes could interact with windows and other USER objects created by 32-bit processes. Thus, 65,535 (2^16) is the limit on the total number of USER objects that can be created on a session.
+    
+for historical reasons, windows must have even-numbered identifiers, so there can be a maximum of 32,768 windows per session.    
+    
+User interface objects support only one handle per object. Processes cannot inherit or duplicate handles to user objects. Processes in one session cannot reference a user handle in another session.
+    
+## Graphics Device Interface (GDI) 
+    
+ es uno de los tres componentes o subsistemas de la interfaz de usuario de Microsoft Windows. Trabaja junto con el núcleo y la API de Windows.
+
+Esta interfaz de programación de aplicaciones se encarga del control gráfico de los dispositivos de salida, como los monitores o las impresoras.
+    
+    
