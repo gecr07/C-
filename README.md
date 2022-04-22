@@ -471,3 +471,50 @@ User interface objects support only one handle per object. Processes cannot inhe
 Esta interfaz de programación de aplicaciones se encarga del control gráfico de los dispositivos de salida, como los monitores o las impresoras.
     
     
+## Identificador de instancia único ( hInstanceExe)
+    
+A cada archivo ejecutable o DLL cargado en el espacio de direcciones de un proceso se le asigna un identificador de instancia único. tu ejecutable
+la instancia del archivo se pasa como el primer parámetro de (w) WinMain, hInstanceExe. El valor del identificador generalmente se necesita para las llamadas.
+    
+```    
+HICON LoadIcon(
+ HINSTANCE hInstance,
+ PCTSTR pszIcon);
+```
+### NOTA HMODULEs and HINSTANCEs
+
+The Platform SDK documentation states that some functions require a parameter of the type HMODULE. An example is the
+GetModuleFileName function, which is shown here:
+ 
+As it turns out, HMODULEs and HINSTANCEs are exactly the same thing. If the documentation for a function indicates
+that an HMODULE is required, you can pass an HINSTANCE, and vice versa.     
+    
+    
+```     
+DWORD GetModuleFileName(
+ HMODULE hInstModule,
+ PTSTR pszPath,
+ DWORD cchPath);
+ ``` 
+    
+El valor real del parámetro hInstanceExe de (w)WinMain es la dirección de memoria base donde el sistema cargó el
+la imagen del archivo ejecutable en el espacio de direcciones del proceso. Por ejemplo, si el sistema abre el archivo ejecutable y carga su
+contenido en la dirección 0x00400000, (w) el parámetro hInstanceExe de WinMain tiene un valor de 0x00400000.
+     
+La dirección base donde se carga la imagen de un archivo ejecutable está determinada por el enlazador. Diferentes enlazadores pueden usar diferentes
+direcciones base predeterminadas.
+    
+    
+### HMODULE GetModuleHandle(PCTSTR pszModule);
+    
+ Cuando llama a esta función, pasa una cadena terminada en cero que especifica el nombre de un archivo ejecutable o DLL cargado
+en el espacio de direcciones del proceso de llamada. Si el sistema encuentra el archivo ejecutable o DLL especificado, GetModuleHandle
+devuelve la dirección base donde se carga ese archivo ejecutable o DLL. El sistema devuelve NULL si no puede encontrar el
+expediente. También puede llamar a GetModuleHandle, pasando NULL para el parámetro pszModule; GetModuleHandle devuelve el
+llamando a la dirección base del archivo ejecutable. 
+    
+    
+    
+    
+    
+    
