@@ -246,5 +246,7 @@ Las macros TEXT y TCHAR son menos útiles hoy en día, ya que todas las aplicaci
 ***Tenga cuidado: algunos encabezados usan el símbolo de preprocesador UNICODEy otros usan _UNICODE con un prefijo de subrayado. Defina siempre ambos símbolos. Visual C++ establece ambos de forma predeterminada al crear un proyecto.***
 
 
+## _lprintf 
 
-
+Se encuentra en Tchar.h  y es para trabajar con caracteres Unicode 
+FUENTE:https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/printf-printf-l-wprintf-wprintf-l?view=msvc-170
