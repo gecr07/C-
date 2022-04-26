@@ -104,12 +104,12 @@ Los tipos enumerados aquí tienen un tamaño fijo y los tamaños son los mismos 
 OTROS 
 LPCTSTR = L‌ong P‌ointer to a C‌onst T‌CHAR STR‌ing (Don't worry, a long pointer is the same as a pointer. There were two flavors of pointers under 16-bit windows.)
 
-1.LPSTR = char*
-2.LPCSTR = const char*
-3.LPWSTR = wchar_t*
-4.LPCWSTR = const wchar_t*
-5.LPTSTR = char* or wchar_t* depending on _UNICODE
-6.LPCTSTR = const char* or const wchar_t* depending on _UNICODE
+1. LPSTR = char*
+2. LPCSTR = const char*
+3. LPWSTR = wchar_t*
+4. LPCWSTR = const wchar_t*
+5. LPTSTR = char* or wchar_t* depending on _UNICODE
+6. LPCTSTR = const char* or const wchar_t* depending on _UNICODE
 
 
 ### Tipos de puntero
