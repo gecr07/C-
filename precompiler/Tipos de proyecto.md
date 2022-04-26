@@ -101,6 +101,15 @@ Los Windows encabezados contienen una gran cantidad de definiciones de tipo. Muc
 
 Los tipos enumerados aquí tienen un tamaño fijo y los tamaños son los mismos en aplicaciones de 32 y 64 bits. Por ejemplo, el tipo DWORD siempre tiene 32 bits de ancho.. Osea se usan en windows para tener un standar y que no varien un DWORD siempre sera 4 bytes.
 
+OTROS 
+
+1.LPSTR = char*
+2.LPCSTR = const char*
+3.LPWSTR = wchar_t*
+4.LPCWSTR = const wchar_t*
+5.LPTSTR = char* or wchar_t* depending on _UNICODE
+6.LPCTSTR = const char* or const wchar_t* depending on _UNICODE
+
 
 ### Tipos de puntero
 
