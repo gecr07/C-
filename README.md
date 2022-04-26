@@ -520,6 +520,12 @@ Each process has an associated environment block. An environment block is a bloc
 process address space that contains a set of strings that look like this: Tiene por ejemplo %APPDATA%
     
     
+## Usando GetCurrentDirectory
     
+ Note
+The MAX_PATH constant defined in WinDef.h as 260 is the maximum number of characters for a directory name or a
+filename. So it is safe to pass a buffer of MAX_PATH elements of the TCHAR type when you call
+GetCurrentDirectory.
+A Process' Current Direct
     
     
