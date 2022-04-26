@@ -514,6 +514,11 @@ expediente. También puede llamar a GetModuleHandle, pasando NULL para el parám
 llamando a la dirección base del archivo ejecutable. 
     
     
+## A Process' Environment Variables
+    
+Each process has an associated environment block. An environment block is a block of memory allocated within the
+process address space that contains a set of strings that look like this: Tiene por ejemplo %APPDATA%
+    
     
     
     
