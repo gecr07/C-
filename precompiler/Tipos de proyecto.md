@@ -102,6 +102,7 @@ Los Windows encabezados contienen una gran cantidad de definiciones de tipo. Muc
 Los tipos enumerados aquí tienen un tamaño fijo y los tamaños son los mismos en aplicaciones de 32 y 64 bits. Por ejemplo, el tipo DWORD siempre tiene 32 bits de ancho.. Osea se usan en windows para tener un standar y que no varien un DWORD siempre sera 4 bytes.
 
 OTROS 
+LPCTSTR = L‌ong P‌ointer to a C‌onst T‌CHAR STR‌ing (Don't worry, a long pointer is the same as a pointer. There were two flavors of pointers under 16-bit windows.)
 
 1.LPSTR = char*
 2.LPCSTR = const char*
