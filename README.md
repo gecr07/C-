@@ -529,3 +529,47 @@ GetCurrentDirectory.
 A Process' Current Direct
     
     
+## The CreateProcess Function
+    
+ Crea un nuevo proceso y su subproceso principal. El nuevo proceso se ejecuta en el contexto de seguridad del proceso de llamada.
+      
+    
+    
+ Ejemplo
+    
+```   
+    STARTUPINFO si = { sizeof(si) };
+    PROCESS_INFORMATION pi;
+    TCHAR szCommandLine[] = TEXT("NOTEPAD");
+    CreateProcess(NULL, szCommandLine, NULL, NULL,FALSE, 0, NULL, NULL, &si, &pi);    
+```
+    
+    
+### pszApplicationName and pszCommandLine
+    
+The pszApplicationName and pszCommandLine parameters specify the name of the executable file the new process
+will use and the command-line string that will be passed to the new process, respectively. Let's talk about the
+pszCommandLine parameter first. ***eL VALOR De szCommandLine si no se tiene la extencion se pone .exe por default***
+
+    
+La ruta donde windows busca el programa primero comieza desde el directirio actual despues revisa los del sistema y finalmente las variables de entorno. 
+incluso se puede poner la ruta completa lo cual genera que no se busque en otra carpeta.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
