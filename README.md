@@ -252,7 +252,8 @@ LRESULT: This type is used to represent the return value of window procedures. I
     
     
 # Windows via C++ Libro
-    
+
+## Cambiar de tipo de proyecto de consola a escritorio    
     
 Para compatibilidad con versiones anteriores, Windows de 64 bits puede ejecutar aplicaciones de 32 bits. 
     
