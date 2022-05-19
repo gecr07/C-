@@ -1,6 +1,10 @@
 # C++
 Programacion en general de C++ 
 
+## Build Tools para Visual Studio 2022
+
+Sirven para poder utilizar el cl.exe el cual compila programas desde la linea de comandos sin tener que instalar visual studio completo.
+abre una consola  especifica para este fin la encuentras en los programas.
 
 # printf
 
